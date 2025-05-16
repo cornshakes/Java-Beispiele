@@ -3,7 +3,7 @@ package examples;
 public class Array2DExamples {
 
     /**
-     * rotates a 2-dimensional square character grid by 90° clockwise.
+     * rotates a 2-dimensional rectangular character grid by 90° clockwise.
      *
      * @param chars the original grid (will not be modified).
      * @return the resulting new grid.
@@ -13,8 +13,7 @@ public class Array2DExamples {
     }
 
     /**
-     * mirrors a 2-dimensional square character grid on a vertical axis through the middle
-     * i.e. left to right.
+     * mirrors a 2-dimensional rectangular character grid left to right.
      *
      * @param chars the original grid (will not be modified).
      * @return the resulting new grid.
@@ -24,8 +23,7 @@ public class Array2DExamples {
     }
 
     /**
-     * mirrors a 2-dimensional square character grid on a horizontal axis through the middle
-     * i.e. top to bottom.
+     * mirrors a 2-dimensional rectangular character grid top to bottom.
      *
      * @param chars the original grid (will not be modified).
      * @return the resulting new grid.
@@ -35,8 +33,8 @@ public class Array2DExamples {
     }
 
     /**
-     * frames a 2-dimensional rectangular character grid with the character provided.
-     * i.e. top to bottom.
+     * frames a 2-dimensional rectangular character grid with the character
+     * provided.
      *
      * @param chars the original grid (will not be modified).
      * @param frameChar the character to use in the frame
@@ -46,5 +44,3 @@ public class Array2DExamples {
         throw new UnsupportedOperationException();
     }
 }
-
-
