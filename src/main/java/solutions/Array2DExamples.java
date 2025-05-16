@@ -44,10 +44,7 @@ public class Array2DExamples {
     public static char[][] mirrorTopBottom(char[][] chars) {
         var result = new char[chars.length][];
         for (int r = 0; r < chars.length; r++) {
-            result[r] = new char[chars[r].length];
-            for (int c = 0; c < chars[r].length; c++) {
-                result[r][c] = chars[chars.length - 1 - r][c];
-            }
+            result[r] = chars[chars.length - 1 - r].clone();
         }
         return result;
     }
