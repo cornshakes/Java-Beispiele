@@ -1,6 +1,5 @@
 package examples;
 
-import org.junit.jupiter.params.provider.MethodSource;
 import util.TestUtil;
 
 import static org.junit.jupiter.api.Assertions.assertArrayEquals;
