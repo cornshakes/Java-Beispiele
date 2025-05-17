@@ -53,14 +53,14 @@ class Array2DExamplesTest {
 
     @ParameterizedTest
     @CsvSource({
-            "grid-001.txt, grid-001-frame.txt",
-            "grid-002.txt, grid-002-frame.txt"
+            "grid-001.txt, grid-001-frame.txt, #",
+            "grid-002.txt, grid-002-frame.txt, *"
     })
-    void frame(String inputFile, String expectedFile) {
+    void frame(String inputFile, String expectedFile, char frameChar) {
         var input = TestUtil.read2DChars(inputFile);
         var original = TestUtil.clone(input);
         var expected = TestUtil.read2DChars(expectedFile);
-        var actual = Array2DExamples.frame(input, '*');
+        var actual = Array2DExamples.frame(input, frameChar);
         assertArrayEquals(input, original, "the input can not be modified");
         assertArrayEquals(expected, actual, "the output was not as expected");
     }
