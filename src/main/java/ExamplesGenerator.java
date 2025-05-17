@@ -1,8 +1,13 @@
+/*
+ * Copyright (c) 2025 Michael Hopfner
+ * Questions? Let me know!
+ * michael.hopfner@icloud.com
+ */
+
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Scanner;
 
 @SuppressWarnings("all")
@@ -28,10 +33,10 @@ public class ExamplesGenerator {
     private static void createTestFile(Path testFilePath) {
         try {
             var path = Path.of("src/test/java/examples", testFilePath.getFileName().toString());
-            var content = new ArrayList<>(Arrays.asList("package examples;"));
-            Files.readAllLines(testFilePath).stream()
-                    .skip(1)
-                    .forEach(content::add);
+            var content = new ArrayList<String>();
+            Files.readAllLines(testFilePath).stream().forEach(content::add);
+            var packageLine = content.indexOf("package solutions;");
+            content.set(packageLine, "package examples;");
             Files.write(path, content);
         } catch (IOException e) {
             throw new RuntimeException(e);
@@ -41,9 +46,8 @@ public class ExamplesGenerator {
     static void createExampleFile(Path solutionPath) {
         try {
             var path = Path.of("src/main/java/examples", solutionPath.getFileName().toString());
-            var content = new ArrayList<>(Arrays.asList("package examples;"));
+            var content = new ArrayList<String>();
             Files.readAllLines(solutionPath).stream()
-                    .skip(1)
                     .filter(line -> !line.startsWith("        "))
                             .forEach(line->{
                                 if(line.equals("    }")){
@@ -51,7 +55,8 @@ public class ExamplesGenerator {
                                 }
                                 content.add(line);
                             });
-
+            var packageLine = content.indexOf("package solutions;");
+            content.set(packageLine, "package examples;");
             Files.write(path, content);
         } catch (IOException e) {
             throw new RuntimeException(e);

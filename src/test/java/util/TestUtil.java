@@ -1,3 +1,9 @@
+/*
+ * Copyright (c) 2025 Michael Hopfner
+ * Questions? Let me know!
+ * michael.hopfner@icloud.com
+ */
+
 package util;
 
 import java.nio.file.Files;
