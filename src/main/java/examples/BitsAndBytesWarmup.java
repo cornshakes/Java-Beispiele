@@ -10,7 +10,7 @@ public class BitsAndBytesWarmup {
     }
 
     /**
-     * filters a number by only leaving bits to 1 if the bit at the same position in the filter is 1.
+     * filters a number by only leaving bits on 1 if the bit at the same position in the filter is 1.
      * The opposite of sieve (see below)
      *
      * @param number the number to filter
@@ -22,7 +22,7 @@ public class BitsAndBytesWarmup {
     }
 
     /**
-     * sieves a number by only leaving bits to 1 if the bit at the same position in the sieve is 0.
+     * sieves a number by only leaving bits on 1 if the bit at the same position in the sieve is 0.
      * The opposite of filter (see above).
      *
      * @param number the number to sieve
