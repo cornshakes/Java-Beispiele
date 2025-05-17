@@ -54,7 +54,7 @@ public class Array2DExamples {
      * frames a 2-dimensional rectangular character grid with the character
      * provided.
      *
-     * @param chars the original grid (will not be modified).
+     * @param chars     the original grid (will not be modified).
      * @param frameChar the character to use in the frame
      * @return the resulting new grid.
      */
@@ -73,6 +73,65 @@ public class Array2DExamples {
             result[i + 1][0] = frameChar;
             System.arraycopy(chars[i], 0, result[i + 1], 1, chars[i].length);
             result[i + 1][result[i + 1].length - 1] = frameChar;
+        }
+        return result;
+    }
+
+    /**
+     * Blurs a picture represented as a rectangular array of integers.
+     * The picture is divided into square chunks starting at the top left.
+     * All the pixels in a chunk are set to the same color.
+     * The color for a chunk is the average color of all the pixels in it.
+     * If a chunk is cut off (smaller), the average of the remaining pixels in it is used.
+     * <p>
+     * <p>
+     * colors are represented as RGB bytes packed into an int like this:
+     * 0x00RRGGBB. To take the average of 2 colors, the R, G, and B bytes must be
+     * averaged individually, rounded down to whole numbers, then packed back into an int.
+     *
+     * @param picture the picture to blur
+     * @return the blurred picture
+     */
+    public static int[][] blur(int[][] picture, int chunkSize) {
+        var result = new int[picture.length][];
+        for (int i = 0; i < picture.length; i++) {
+            result[i] = new int[picture[0].length];
+        }
+        for (int chunk_row = 0; chunk_row < picture.length; chunk_row += chunkSize) {
+            for (int chunk_col = 0; chunk_col < picture[0].length; chunk_col += chunkSize) {
+                var avg_r = 0;
+                var avg_g = 0;
+                var avg_b = 0;
+                var count = 0;
+                for (int row = 0; row < chunkSize; row++) {
+                    if (chunk_row + row < picture.length) {
+                        for (int col = 0; col < chunkSize; col++) {
+                            if (chunk_col + col < picture[0].length) {
+                                var color = picture[chunk_row + row][chunk_col + col];
+                                avg_r += color >>> 16 & 0xFF;
+                                avg_g += color >>> 8 & 0xFF;
+                                avg_b += color & 0xFF;
+                                count += 1;
+                            }
+                        }
+                    }
+                }
+
+                var r = avg_r / count;
+                var g = avg_g / count;
+                var b = avg_b / count;
+                var chunk_color = (r << 16) | (g << 8) | b;
+
+                for (int row = 0; row < chunkSize; row++) {
+                    if (chunk_row + row < picture.length) {
+                        for (int col = 0; col < chunkSize; col++) {
+                            if (chunk_col + col < picture[0].length) {
+                                result[chunk_row + row][chunk_col + col] = chunk_color;
+                            }
+                        }
+                    }
+                }
+            }
         }
         return result;
     }

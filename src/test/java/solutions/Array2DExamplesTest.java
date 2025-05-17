@@ -64,4 +64,18 @@ class Array2DExamplesTest {
         assertArrayEquals(input, original, "the input can not be modified");
         assertArrayEquals(expected, actual, "the output was not as expected");
     }
+
+    @ParameterizedTest
+    @CsvSource({
+            "picture-001.txt, picture-001-blur2.txt, 2",
+            "picture-001.txt, picture-001-blur3.txt, 3",
+    })
+    void blur(String inputFile, String expectedFile, int chunkSize) {
+        var input = TestUtil.read2DHexInts(inputFile);
+        var original = TestUtil.clone(input);
+        var expected = TestUtil.read2DHexInts(expectedFile);
+        var actual = Array2DExamples.blur(input, chunkSize);
+        assertArrayEquals(input, original, "the input can not be modified");
+        assertArrayEquals(expected, actual, "the output was not as expected");
+    }
 }
