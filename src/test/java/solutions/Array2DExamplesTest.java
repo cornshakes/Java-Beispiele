@@ -31,6 +31,34 @@ class Array2DExamplesTest {
 
     @ParameterizedTest
     @CsvSource({
+            "grid-001.txt, grid-001-rotate180Degrees.txt",
+            "grid-002.txt, grid-002-rotate180Degrees.txt"
+    })
+    void rotate180Degrees(String inputFile, String expectedFile) {
+        var input = TestUtil.read2DChars(inputFile);
+        var original = TestUtil.clone(input);
+        var expected = TestUtil.read2DChars(expectedFile);
+        var actual = Array2DExamples.rotate180Degrees(input);
+        assertArrayEquals(input, original, "the input can not be modified");
+        assertArrayEquals(expected, actual, "the output was not as expected");
+    }
+
+    @ParameterizedTest
+    @CsvSource({
+            "grid-001.txt, grid-001-rotate270Degrees.txt",
+            "grid-002.txt, grid-002-rotate270Degrees.txt"
+    })
+    void rotate270Degrees(String inputFile, String expectedFile) {
+        var input = TestUtil.read2DChars(inputFile);
+        var original = TestUtil.clone(input);
+        var expected = TestUtil.read2DChars(expectedFile);
+        var actual = Array2DExamples.rotate270Degrees(input);
+        assertArrayEquals(input, original, "the input can not be modified");
+        assertArrayEquals(expected, actual, "the output was not as expected");
+    }
+
+    @ParameterizedTest
+    @CsvSource({
             "grid-001.txt, grid-001-mirrorLeftRight.txt",
             "grid-002.txt, grid-002-mirrorLeftRight.txt"
     })

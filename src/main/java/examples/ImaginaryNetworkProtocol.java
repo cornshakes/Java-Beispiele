@@ -6,6 +6,8 @@
 
 package examples;
 
+import java.util.Random;
+
 /**
  * This class uses the Imaginary Network Protocol INP. Each INP packet comes as
  * a byte[].
@@ -50,6 +52,8 @@ package examples;
  * ...
  */
 public class ImaginaryNetworkProtocol {
+
+    private final static Random random = new Random();
 
     /**
      * checks if a packet is valid according to the protocol

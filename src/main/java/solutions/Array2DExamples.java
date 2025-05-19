@@ -26,6 +26,40 @@ public class Array2DExamples {
     }
 
     /**
+     * rotates a 2-dimensional rectangular character grid by 180°.
+     *
+     * @param chars the original grid (will not be modified).
+     * @return the resulting new grid.
+     */
+    public static char[][] rotate180Degrees(char[][] chars) {
+        var result = new char[chars.length][];
+        for (int r = 0; r < result.length; r++) {
+            result[r] = new char[chars[0].length];
+            for (int c = 0; c < chars[0].length; c++) {
+                result[r][c] = chars[chars.length - 1 - r][chars[0].length - 1 - c];
+            }
+        }
+        return result;
+    }
+
+    /**
+     * rotates a 2-dimensional rectangular character grid by 90° counter-clockwise.
+     *
+     * @param chars the original grid (will not be modified).
+     * @return the resulting new grid.
+     */
+    public static char[][] rotate270Degrees(char[][] chars) {
+        var result = new char[chars[0].length][];
+        for (int r = 0; r < result.length; r++) {
+            result[r] = new char[chars.length];
+            for (int c = 0; c < chars.length; c++) {
+                result[r][c] = chars[c][chars[0].length - 1 - r];
+            }
+        }
+        return result;
+    }
+
+    /**
      * mirrors a 2-dimensional rectangular character grid left to right.
      *
      * @param chars the original grid (will not be modified).
@@ -88,12 +122,14 @@ public class Array2DExamples {
      * The picture is divided into square chunks starting at the top left.
      * All the pixels in a chunk are set to the same color.
      * The color for a chunk is the average color of all the pixels in it.
-     * If a chunk is cut off (smaller), the average of the remaining pixels in it is used.
+     * If a chunk is cut off (smaller), the average of the remaining pixels in it is
+     * used.
      * <p>
      * <p>
      * colors are represented as RGB bytes packed into an int like this:
      * 0x00RRGGBB. To take the average of 2 colors, the R, G, and B bytes must be
-     * averaged individually, rounded down to whole numbers, then packed back into an int.
+     * averaged individually, rounded down to whole numbers, then packed back into
+     * an int.
      *
      * @param picture the picture to blur
      * @return the blurred picture
