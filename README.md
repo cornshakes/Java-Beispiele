@@ -4,6 +4,8 @@
 
 Öffne das Projekt in IntelliJ. Klicke dazu gleich hier rechts oben den grünen "Code"-Button und kopiere die Repository-URL (Die Adresse die da steht). Dann kannst du im Intellij-Welcome Screen rechts oben "Clone Repository" klicken und die URL einfügen. Alternativ geht auch "File->New->Project from Version Control...".
 
+Nachdem du das Projekt geöffnet hast, mache einen Rechtsklick links oben auf den Namen des Projekts und wähle "Build Module Java-Beispiele".
+
 Öffne das "src" dir.
 Darin sind zwei weitere dirs, "main" und "test".
 Mach einen Rechtsklick auf "test" und wähle "Run Tests" (das mit dem Play-Button daneben).
